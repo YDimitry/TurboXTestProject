@@ -1,0 +1,57 @@
+class inherited Com.Frm.IBlankWIthFrames "";
+import Com Classes Def, Consts;
+
+inclass
+
+inobject private
+
+  CytoscapeJS1 :Ctrl.CytoscapeJS;
+
+
+proc Init
+   Inherited Init;
+
+   TabsFrame.Visible = True;
+   TabsFrame.ShowTabs = False;
+
+   CytoscapeJS1 = Ctrl.CytoscapeJS.Create;
+   MainTab.InsertCompAtEnd( CytoscapeJS1 );
+   CytoscapeJS1.DrawGraph;
+
+--   with FieldsFrame do
+--      with AddButton("btn",@DependGraph_OnClick) do
+--         Caption = "Граф зависимостей";
+--         width = 50;
+--      end;    
+--   end
+
+--   html = Ctrl.CytoscapeJS.Create;
+--   with RootFrame do
+--      with AddNewFrame do
+--         with AddButton("btn",@DependGraph_OnClick) do
+--            Caption = "Граф зависимостей";
+--            width = 50;
+--         end;
+--      end;
+--
+--      with AddNewFrame do
+--        color = 0xfeefce;
+----        with AddComp(html) do
+----
+----        end;
+--        
+--      end
+
+--   end;
+end;
+
+
+
+proc DependGraph_OnClick(aSender:IControl;aIndex:Integer);
+    Sys.Utils.TraceF("граф зависимостей");
+    CytoscapeJS1.DrawGraph;
+end;
+
+
+
+end

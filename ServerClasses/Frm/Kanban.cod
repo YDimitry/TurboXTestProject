@@ -1,0 +1,77 @@
+class inherited Com.Frm.IBlankWIthFrames "JKanban";
+
+inclass
+
+inobject private
+
+  Dataset  :Storage := Storage.Create;
+  Kanban1 :InfoBoard.Ctrl.JKanban;
+
+
+  proc Button1OnClick(aSender :Com.Ctrl.IControl; aIndex :Integer)
+--    Kanban1.AddBoardEx(Kanban1.KBoard('backlog', 'Backlog')
+--      , NewCard('TXCORE-942', 'Упрощённая настройка отчетов - умолчания')
+--      , NewCard('TXCORE-943', 'Упрощённая настройка отчетов - расширенное уточнение')
+--    );   
+     Kanban1.Dummy;
+  end
+
+
+proc Init
+  inherited Init
+
+--  Kanban1.LoadCssFile("InfoBoard", 'kanbanDemo.css')
+
+--    Kanban1.AddBoardEx(Kanban1.KBoard('backlog', 'Backlog')
+--      , NewCard('TXCORE-942', 'Упрощённая настройка отчетов - умолчания')
+--      , NewCard('TXCORE-943', 'Упрощённая настройка отчетов - расширенное уточнение')
+--    );   
+             
+
+
+end
+
+  func Card_FooterTag(aTag :String; aHint, aColor :String = nil) :String
+    if aTag = nil then
+      return
+    end
+    if aHint <> nil then
+      aHint = ' title="' + aHint + '"'
+    end
+    if aColor <> nil then
+      aColor = 'style="background-color: ' + aColor + '"'
+    end
+    Result = '<span' + aHint + aColor + '>' + aTag + '</span>'
+  end
+
+
+
+  func CardFace(aCode, aText :String; aColor :String = nil) :String
+    const vAvatarTxt = 'Assignee: Присакарь Сергей Валерьевич'
+    const vAvatarIco = 'http://dragon.tengry.com/jira/secure/useravatar?avatarId=10122'
+    const vBackground = If (aColor = nil , '', ' style="background-color: ' + aColor + '"')
+    Result = Card_FooterTag('20.11.2021 13:21', 'Дата создания')
+           + Card_FooterTag('24.11.2021 12:15', 'Дата изменения')
+           + Card_FooterTag('тег', 'Какой-то тег', If(aColor = nil, '', 'goldenrod'))
+    if Result <> nil then
+      Result = '<div class="card_footer">' + Result + '</div>'
+    end
+    Result = '<div class="card_main" ' + vBackground + '>'
+           + '<div class="card_header">'
+           + '<span>' + aCode + '</span>'
+           + '<img class="card_avatar card_float" alt="' + vAvatarTxt + '" title="' + vAvatarTxt + '" src="' + vAvatarIco + '"/>'
+           + '</div>'
+           + '<div class="card_body">' + aText + '</div>'
+           + Result
+           + '</div></div>'
+  end
+
+
+
+  func NewCard(aCode, aText :String; aColor :String = nil) :Storage
+    const vId = 'item_' + Com.lib.Crc32Now
+    Result = Kanban1.KCard(vId, CardFace(aCode, aText, aColor))
+    Dataset[vId] = aCode;
+  end;
+
+end

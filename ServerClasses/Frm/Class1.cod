@@ -1,0 +1,50 @@
+class inherited Com.Frm.IBlankWIthFrames "";
+import Com Classes Def;
+
+inclass
+
+inobject private
+var html : Ctrl.TestJS;
+var cnt:Integer;
+proc Init
+   inherited Init;
+
+   html = Ctrl.TestJS.Create;
+   with RootFrame.AddNewFrame do
+
+      with AddButton("btn",@AddElem_OnClick) do
+         Caption = "Добавить элемент";
+         width = 50;
+      end;
+      with AddButton("btn",@batchJS_OnClick) do
+         Caption = "пакетный запуск js";
+         width = 50;
+      end;
+
+   end
+
+   html.BeginBatch;
+
+   with RootFrame.AddNewFrame do
+      color = 0xfeefce;
+      AddComp(html);
+     
+
+     html.FixSize
+   end
+  
+end;
+
+proc AddElem_OnClick(aSender:IControl;aIndex:Integer);
+--   html.LoadHtml(Fmt("<div>hrllo world %d</div>",[cnt]));
+--   inc(cnt);
+   html.DrawTest;
+end;
+
+proc batchJS_OnClick(aSender:IControl;aIndex:Integer);
+   html.RunBatch;
+   html.BeginBatch;
+end
+
+
+end

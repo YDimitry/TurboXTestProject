@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Properties Version="1">
+  <Property Name="ProcSrv" Value="True"/>
+  <Property Name="Icon" Value="Com.Icons.server"/>
+</Properties>
+<Items>
+  <Item Name="Rec"/>
+  <Item Name="Frm"/>
+  <Item Name="Tab"/>
+</Items>

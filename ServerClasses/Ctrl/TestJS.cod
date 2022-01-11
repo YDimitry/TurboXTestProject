@@ -1,0 +1,19 @@
+class inherited Com.Ctrl.IJSControl "";
+import Com Classes Def;
+inclass private
+
+
+inobject public
+
+proc DrawTest
+
+   try
+     ExecuteScript("drawTest('<div>draw test</div>')");
+   except
+     dlgs.Message("Ошибка при запуске JS-скрипта");
+   end
+  
+end
+
+
+end
